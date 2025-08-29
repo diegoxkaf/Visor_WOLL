@@ -1,0 +1,949 @@
+/* ========================================
+   ESTILOS BASE - COMÚN PARA TODAS LAS PANTALLAS
+   ======================================== */
+
+/* Variables CSS para consistencia */
+:root {
+  --color-primary: #b50000;
+  --color-secondary: #ffffff;
+  --color-accent: #e0e0e0;
+  --color-accent-hover: #38a78c;
+  --color-light: #ffffff;
+  --color-gray: #6c757d;
+  --color-gray-light: #f8f9fa;
+  --navbar-height: 60px;
+  --navbar-vertical-padding: 0.5rem;
+  --navbar-horizontal-gap: 1rem;
+  --sidebar-width: 320px;
+  --border-radius: 0.375rem;
+  --transition-standard: all 0.3s ease;
+  --shadow-light: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-medium: 0 4px 8px rgba(0, 0, 0, 0.15);
+  --shadow-heavy: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Reset y estilos generales */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Exo 2", sans-serif;
+  margin: 0;
+  padding: var(--navbar-height) 0 0 0 !important;
+  height: 100vh !important;
+  overflow: hidden !important;
+}
+
+/* .container-fluid {
+height: calc(100vh - var(--navbar-height)) !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+} */
+
+/* Solo para el container principal, NO para el navbar */
+body > .container-fluid {
+  height: calc(100vh - var(--navbar-height)) !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.row.g-0 {
+  flex: 1 !important;
+  height: 100% !important;
+  overflow: hidden !important;
+  margin: 0 !important;
+}
+
+.col-12 {
+  flex: 1 !important;
+  height: 100% !important;
+  position: relative !important;
+}
+
+.col-12,
+.col-md-10,
+.col-md-2 {
+  padding: 0 !important;
+}
+
+/* Container navbar */
+.navbar {
+  display: block !important;
+}
+
+.navbar .container-fluid {
+  display: grid !important;
+  grid-template-columns: 1fr auto !important;
+  align-items: center !important;
+  gap: 1rem !important;
+  padding: 0 1rem !important;
+  height: var(--navbar-height) !important;
+}
+
+/* Imagen del Navbar */
+.navbar-start {
+  display: flex !important;
+  align-items: center !important;
+  gap: 1rem !important;
+}
+
+.navbar img {
+  height: 65px !important;
+  width: auto !important;
+  display: block !important;
+}
+
+/* TÍTULO NAVBAR */
+.navbar .navbar-brand {
+  color: var(--color-light) !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  margin: 0 !important;
+  font-weight: bold;
+}
+
+.navbar .navbar-brand:hover,
+.navbar .navbar-brand:focus {
+  color: var(--color-light) !important;
+  text-decoration: none !important;
+  opacity: 0.9 !important;
+}
+
+/* Contenedor de botones */
+.buttons-container {
+  display: flex !important;
+  gap: 0.5rem !important;
+  align-items: center !important;
+}
+
+/* BOTONES NAVBAR */
+.navbar .btn {
+  width: 42px !important;
+  height: 42px !important;
+  display: flex !important;
+  align-items: center !important; /* Centra el ícono verticalmente */
+  justify-content: center !important; /* Centra el ícono horizontalmente */
+  padding: 0 !important;
+  margin: 0 !important;
+  border-radius: 6px !important;
+  flex-shrink: 0 !important;
+  transition: var(--transition-standard) !important;
+  line-height: 1 !important; /* Evita espacios extra */
+}
+
+.navbar .btn i {
+  font-size: 1.1rem !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 1 !important; /* Evita espacios extra en los íconos */
+}
+
+.navbar .btn:hover,
+.navbar .btn:focus {
+  background-color: var(--color-accent) !important;
+  border-color: var(--color-accent) !important;
+  color: var(--color-primary) !important;
+  outline: none !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Colores de fondo */
+.bg-dark-blue {
+  background-color: var(--color-primary);
+}
+
+.text-accent {
+  color: var(--color-accent);
+}
+
+/* Botones temáticos base */
+.theme-btn {
+  background: var(--color-secondary);
+  color: var(--color-light) !important;
+  text-align: left;
+  transition: var(--transition-standard);
+  border: none;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-light);
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 400;
+}
+
+.theme-btn:hover {
+  background-color: #3b3b6b;
+  color: var(--color-light) !important;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-medium);
+}
+
+.theme-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(69, 182, 156, 0.25);
+}
+
+.theme-btn.active {
+  background-color: var(--color-accent);
+  color: var(--color-primary) !important;
+  font-weight: 600;
+  border: 1px solid #51285b;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.theme-btn i {
+  margin-right: 0.75rem;
+  width: 20px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+/* Mapa base */
+.col-12 {
+  flex: 1 !important;
+  height: 100% !important;
+  padding: 0 !important;
+}
+
+#map {
+  position: absolute !important;
+  top: 15px !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Popups y tooltips de Leaflet */
+.leaflet-popup-content {
+  min-width: 200px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.popup-content p {
+  margin: 5px 0;
+  font-size: 0.9em;
+}
+
+.leaflet-tooltip.custom-outlined-label-tooltip {
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.leaflet-tooltip.custom-outlined-label-tooltip .outlined-text {
+  white-space: nowrap;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #ff0000;
+}
+
+/* Leyenda base */
+.legend-container {
+  padding: 10px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  margin: 5px 0;
+}
+
+.legend-color {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  border: 1px solid #666;
+}
+
+/* Controles de capas base */
+.layers-container {
+  padding: 10px;
+}
+
+.base-layers-container {
+  padding: 10px;
+}
+
+/* OFFCANVAS GLOBAL - SIDEBAR IZQUIERDO (Para todas las pantallas) */
+.offcanvas.offcanvas-start {
+  width: 85vw !important;
+  max-width: 400px !important;
+  min-width: 300px !important;
+  background-color: var(--color-primary) !important;
+  z-index: 1055 !important;
+}
+
+.offcanvas-start .offcanvas-header {
+  padding: 1rem !important;
+  background-color: var(--color-primary) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+  min-height: 70px !important;
+  display: flex !important;
+  justify-content: center !important;
+  position: relative !important;
+}
+
+.offcanvas-start .offcanvas-title {
+  color: var(--color-accent) !important;
+  font-weight: 600 !important;
+  font-size: 1.1rem !important;
+  text-align: center !important;
+}
+
+.offcanvas-start .btn-close {
+  position: absolute !important; /* Posiciona el botón de cierre */
+  right: 1rem !important; /* Lo coloca a la derecha */
+  top: 50% !important; /* Lo centra verticalmente */
+  transform: translateY(-50%);
+}
+
+.offcanvas-start .btn-close:hover {
+  opacity: 1 !important;
+}
+
+.offcanvas-start .offcanvas-body {
+  padding: 1rem !important;
+  background-color: var(--color-primary) !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+/* BOTONES MENÚ OFFCANVAS */
+.offcanvas-start .theme-btn {
+  width: 100% !important;
+  padding: 1rem !important;
+  margin: 0 0 0.75rem 0 !important;
+  background: var(--color-secondary) !important;
+  border: none !important;
+  border-radius: var(--border-radius) !important;
+  color: var(--color-primary) !important; /* Cambiamos el color de las letras */
+  text-align: left !important;
+  font-size: 0.95rem !important;
+  display: flex !important;
+  align-items: center !important;
+  transition: all 0.2s ease !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
+  min-height: 52px !important;
+}
+
+/* También ajustamos el color de los íconos */
+.offcanvas-start .theme-btn i {
+  margin-right: 0.75rem !important;
+  width: 20px !important;
+  text-align: center !important;
+  font-size: 1rem !important;
+  color: var(--color-primary) !important;
+}
+
+/* FOOTER OFFCANVAS */
+.offcanvas-start .sidebar-footer {
+  margin-top: auto !important;
+  padding-top: 1rem !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.15) !important;
+}
+
+.offcanvas-start .logo-pill-container {
+  background-color: var(--color-light) !important;
+  border-radius: var(--border-radius) !important;
+  padding: 0.75rem !important;
+}
+
+.offcanvas-start .modal-logo {
+  max-height: 40px !important;
+}
+
+/* OFFCANVAS DERECHO - GLOBAL */
+.offcanvas-end {
+  width: 90vw !important;
+  max-width: 400px !important;
+  background-color: var(--color-light) !important;
+}
+
+.offcanvas-end .offcanvas-header {
+  background-color: var(--color-gray-light) !important;
+  border-bottom: 1px solid #dee2e6 !important;
+  padding: 1rem !important;
+}
+
+.offcanvas-end .offcanvas-title {
+  color: #212529 !important;
+  font-weight: 600 !important;
+}
+
+.offcanvas-end .offcanvas-body {
+  background-color: var(--color-light) !important;
+  color: #212529 !important;
+  padding: 1rem !important;
+}
+
+.offcanvas-end .layers-container,
+.offcanvas-end .base-layers-container {
+  max-height: 250px !important;
+  overflow-y: auto !important;
+  border: 1px solid #dee2e6 !important;
+  border-radius: var(--border-radius) !important;
+  background-color: #ffffff !important;
+  padding: 0.75rem !important;
+}
+
+.offcanvas-end #sidebar-legend {
+  max-height: 300px !important;
+  overflow-y: auto !important;
+  border: 1px solid #dee2e6 !important;
+  border-radius: var(--border-radius) !important;
+  background-color: #ffffff !important;
+  margin-top: 0.75rem !important;
+  padding: 0.75rem !important;
+}
+
+/* Botones secundarios */
+.btn-secondary {
+  background-color: var(--color-gray);
+  border-color: var(--color-gray);
+  transition: var(--transition-standard);
+}
+
+.btn-secondary:hover {
+  background-color: #5a6268;
+  border-color: #545b62;
+}
+
+/* Formularios */
+.form-check-label:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.form-check-input:disabled + .form-check-label {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Cambiar colores Checkbox, se sobre escribe a bootstrap */
+.form-check-input:checked {
+  background-color: #b50000 !important;
+  border-color: #b50000 !important;
+}
+
+.form-check-input:focus {
+  border-color: #b50000 !important;
+  box-shadow: 0 0 0 0.25rem rgba(181, 0, 0, 0.25) !important;
+}
+
+/* Logos */
+.modal-logo {
+  max-height: 50px;
+  width: auto;
+  transition: var(--transition-standard);
+}
+
+.modal-logo:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+.logo-container {
+  max-width: 100%;
+  padding: 0;
+}
+
+.logo-container img {
+  margin: 0 10px;
+  flex-shrink: 0;
+}
+
+.logo-pill-container {
+  border-radius: var(--border-radius);
+  transition: var(--transition-standard);
+}
+
+.logo-pill-container:hover {
+  box-shadow: var(--shadow-medium);
+  transform: translateY(-2px);
+}
+
+/* Offcanvas base */
+.offcanvas-body {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.collapse.show {
+  flex-grow: 1;
+}
+
+/* Utilidades */
+.w-100 {
+  width: 100% !important;
+}
+
+.mt-auto {
+  margin-top: auto !important;
+}
+
+/* Configuración global para todos los popups Leafleat*/
+.leaflet-popup-content-wrapper {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif !important;
+  line-height: 1.4 !important;
+}
+
+/* Contenedor principal del popup personalizado */
+.custom-popup {
+  font-size: 12px !important;
+  line-height: 1.3 !important;
+  color: #333 !important;
+  margin: 0 !important;
+  padding: 4px 0 !important;
+}
+
+/* Título del popup - más pequeño y en negrita */
+.custom-popup .popup-title {
+  font-size: 13px !important;
+  font-weight: bold !important;
+  margin: 0 0 8px 0 !important;
+  padding: 0 !important;
+  color: var(--color-primary, #1a1a2e) !important;
+  border-bottom: 1px solid #e0e0e0 !important;
+  padding-bottom: 4px !important;
+}
+
+/* Párrafos del contenido del popup */
+.custom-popup p {
+  font-size: 11px !important;
+  margin: 3px 0 !important;
+  padding: 0 !important;
+  line-height: 1.3 !important;
+}
+
+/* Etiquetas en negrita dentro del contenido */
+.custom-popup p strong {
+  font-weight: 600 !important;
+  color: #222 !important;
+  font-size: 11px !important;
+}
+
+/* Enlaces dentro del popup */
+.custom-popup a {
+  color: var(--color-accent, #38a78c) !important;
+  text-decoration: none !important;
+  font-size: 11px !important;
+  word-break: break-word !important;
+}
+
+.custom-popup a:hover {
+  text-decoration: underline !important;
+  color: var(--color-accent-hover, #38a78c) !important;
+}
+
+/* Ajustes específicos para el contenedor del popup de Leaflet */
+.leaflet-popup-content {
+  margin: 8px 12px !important;
+  line-height: 1.3 !important;
+  font-size: 12px !important;
+  min-width: 180px !important;
+  max-width: 300px !important;
+}
+
+/* Punta del popup */
+.leaflet-popup-tip-container {
+  margin: 0 auto !important;
+}
+
+/* Botón de cierre del popup */
+.leaflet-popup-close-button {
+  font-size: 16px !important;
+  padding: 2px 6px !important;
+  color: #666 !important;
+}
+
+.leaflet-popup-close-button:hover {
+  color: #333 !important;
+  background-color: #f0f0f0 !important;
+}
+
+/* ========================================
+   ESTILOS DESKTOP - PANTALLAS ≥ 769px
+   ======================================== */
+
+/* Layout principal desktop - Solo aplica a pantallas grandes */
+@media (min-width: 769px) {
+  /* Ajustes específicos para container desktop */
+  .container-fluid {
+    display: flex;
+  }
+
+  .row.g-0 {
+    width: 100%;
+  }
+
+  .offcanvas-start .offcanvas-title {
+    font-size: 1.2rem !important;
+  }
+
+  .offcanvas-start .offcanvas-body {
+    padding: 1.25rem !important;
+  }
+
+  /* BOTONES MENÚ - Ajustes para desktop */
+  .offcanvas-start .theme-btn {
+    padding: 1.1rem 1.25rem !important;
+    margin: 0 0 0.85rem 0 !important;
+    font-size: 1rem !important;
+    min-height: 56px !important;
+  }
+
+  .offcanvas-start .theme-btn i {
+    font-size: 1.1rem !important;
+    margin-right: 0.85rem !important;
+  }
+
+  /* FOOTER - Ajustes para desktop */
+  .offcanvas-start .sidebar-footer {
+    padding-top: 1.5rem !important;
+  }
+
+  .offcanvas-start .logo-pill-container {
+    padding: 1rem !important;
+  }
+
+  .offcanvas-start .modal-logo {
+    max-height: 45px !important;
+  }
+
+  /* Sidebar derecho (offcanvas) desktop */
+
+  .offcanvas-end .offcanvas-header {
+    background-color: var(--color-gray-light);
+    border-bottom: 1px solid #dee2e6;
+    padding: 1.25rem !important;
+  }
+
+  .offcanvas-end .offcanvas-title {
+    color: #212529;
+    font-weight: 600;
+    font-size: 1.25rem;
+  }
+
+  .offcanvas-end .offcanvas-body {
+    background-color: var(--color-light);
+    color: #212529;
+    padding: 1.25rem !important;
+  }
+
+  .offcanvas-end .btn-close {
+    filter: none;
+    opacity: 0.6;
+    transition: opacity 0.2s ease;
+  }
+
+  .offcanvas-end .btn-close:hover {
+    opacity: 1;
+  }
+
+  /* Controles del sidebar derecho */
+  .offcanvas-end .btn-secondary {
+    padding: 0.75rem 1rem;
+    font-weight: 500;
+    border-radius: var(--border-radius);
+  }
+
+  .offcanvas-end .collapse {
+    margin-top: 1rem;
+  }
+
+  .offcanvas-end .layers-container,
+  .offcanvas-end .base-layers-container {
+    max-height: 300px !important;
+    overflow-y: auto;
+    border: 1px solid #dee2e6;
+    border-radius: var(--border-radius);
+    background-color: #ffffff;
+    padding: 1rem !important;
+  }
+
+  .offcanvas-end #sidebar-legend {
+    max-height: 400px !important;
+    overflow-y: auto;
+    border: 1px solid #dee2e6;
+    border-radius: var(--border-radius);
+    background-color: #ffffff;
+    margin-top: 1rem;
+    padding: 1rem !important;
+  }
+
+  /* Área del mapa desktop - Ocupa todo el espacio disponible */
+  .col-12 {
+    flex: 1;
+    height: 100%;
+    position: relative;
+  }
+
+  #map {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+/* ========================================
+   ESTILOS MOBILE - PANTALLAS ≤ 768px
+   ======================================== */
+
+@media (max-width: 768px) {
+  .navbar .container-fluid {
+    grid-template-columns: minmax(0, 1fr) auto !important;
+    gap: 0.75rem !important;
+    padding: 0 0.75rem !important;
+  }
+
+  .navbar img {
+    height: 23px !important;
+  }
+
+  .navbar-start {
+    gap: 0.75rem !important;
+  }
+  /* NAVBAR MÓVIL - Ajustes específicos que no están en base */
+  .navbar .navbar-brand {
+    font-size: 0.9rem !important;
+  }
+
+  /* CONTENEDOR DE BOTONES - Ajustes específicos */
+  .navbar .buttons-container {
+    min-width: 140px !important;
+    align-self: center !important; /* Centra verticalmente en el grid */
+  }
+
+  .container-fluid {
+    bottom: 8px;
+  }
+
+  /* OFFCANVAS MENÚ PRINCIPAL - Ajustes específicos móvil */
+  .offcanvas.offcanvas-start {
+    max-width: 350px !important;
+    min-width: 280px !important;
+  }
+
+  /* NO sobreescribir los estilos del offcanvas-body ya dezfinidos en base */
+  /* Los estilos base ya manejan correctamente el layout */
+
+  /* Footer del sidebar - sin cambios de layout */
+  .offcanvas-start .sidebar-footer {
+    margin-top: auto !important;
+    padding-top: 1rem !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.15) !important;
+  }
+
+  /* Container del logo - mantener centrado como en base */
+  .offcanvas-start .logo-pill-container {
+    background-color: var(--color-light) !important;
+    border-radius: var(--border-radius) !important;
+    padding: 0.75rem !important;
+  }
+
+  /* Logo */
+  .offcanvas-start .modal-logo {
+    max-height: 40px !important;
+  }
+
+  .buttons-container {
+    min-width: 140px !important;
+    max-width: 160px !important;
+  }
+}
+
+/* PANTALLAS PEQUEÑAS - AJUSTES ADICIONALES */
+@media (max-width: 480px) {
+  .navbar .container-fluid {
+    grid-template-columns: minmax(0, 1fr) minmax(130px, auto) !important;
+    grid-gap: 0.5rem !important;
+    padding: 0 0.75rem !important;
+  }
+
+  .navbar .navbar-brand {
+    font-size: 0.9rem !important;
+    max-width: calc(100% - 50px) !important;
+  }
+
+  .navbar .btn {
+    width: 38px !important;
+    height: 38px !important;
+  }
+
+  .navbar .btn i {
+    font-size: 1rem !important;
+  }
+
+  .navbar .buttons-container {
+    min-width: 130px !important;
+    gap: 0.3rem !important;
+  }
+
+  .offcanvas-start {
+    width: 92vw !important;
+  }
+
+  .offcanvas-end {
+    width: 95vw !important;
+  }
+
+  /* Reducir padding en pantallas muy pequeñas */
+  .offcanvas-start .offcanvas-body {
+    padding: 0.75rem !important;
+  }
+
+  /* Botones más compactos - pero manteniendo el layout base */
+  .offcanvas-start .theme-btn {
+    padding: 0.9rem !important;
+    margin: 0 0 0.6rem 0 !important;
+    min-height: 50px !important;
+  }
+
+  /* Footer más compacto */
+  .offcanvas-start .sidebar-footer {
+    padding-top: 0.75rem !important;
+  }
+
+  .offcanvas-start .logo-pill-container {
+    padding: 0.6rem !important;
+  }
+
+  .offcanvas-start .modal-logo {
+    max-height: 35px !important;
+  }
+
+  .buttons-container {
+    min-width: 130px !important;
+    max-width: 150px !important;
+    gap: 0.3rem !important;
+  }
+
+  /* Custom popup responsive */
+  .custom-popup {
+    font-size: 11px !important;
+  }
+
+  .custom-popup .popup-title {
+    font-size: 12px !important;
+  }
+
+  .custom-popup p {
+    font-size: 10px !important;
+  }
+
+  .custom-popup p strong {
+    font-size: 10px !important;
+  }
+
+  .custom-popup a {
+    font-size: 10px !important;
+  }
+
+  .leaflet-popup-content {
+    margin: 6px 10px !important;
+    min-width: 150px !important;
+    max-width: 250px !important;
+  }
+}
+
+/* PANTALLAS EXTRA PEQUEÑAS - MÁXIMA COMPRESIÓN */
+@media (max-width: 360px) {
+  .navbar .container-fluid {
+    grid-template-columns: minmax(0, 1fr) minmax(120px, auto) !important;
+    grid-gap: 0.3rem !important;
+    padding: 0 0.4rem !important;
+  }
+
+  .navbar .navbar-brand {
+    font-size: 0.8rem !important;
+    max-width: calc(100% - 80px) !important;
+  }
+
+  .navbar .btn {
+    width: 36px !important;
+    height: 36px !important;
+  }
+
+  .navbar .btn i {
+    font-size: 0.9rem !important;
+  }
+
+  .navbar .buttons-container {
+    min-width: 120px !important;
+    gap: 0.25rem !important;
+  }
+
+  /* Custom popup para pantallas muy pequeñas */
+  .custom-popup {
+    font-size: 10px !important;
+  }
+
+  .custom-popup .popup-title {
+    font-size: 11px !important;
+    margin-bottom: 6px !important;
+  }
+
+  .custom-popup p {
+    font-size: 9px !important;
+    margin: 2px 0 !important;
+  }
+
+  .custom-popup p strong {
+    font-size: 9px !important;
+  }
+
+  .custom-popup a {
+    font-size: 9px !important;
+  }
+
+  .leaflet-popup-content {
+    margin: 4px 8px !important;
+    min-width: 120px !important;
+    max-width: 200px !important;
+  }
+
+  /* Padding mínimo */
+  .offcanvas-start .offcanvas-body {
+    padding: 0.5rem !important;
+  }
+
+  /* Botones extra compactos - pero respetando el layout base */
+  .offcanvas-start .theme-btn {
+    padding: 0.8rem !important;
+    margin: 0 0 0.5rem 0 !important;
+    min-height: 48px !important;
+    font-size: 0.9rem !important;
+  }
+
+  /* Iconos un poco más pequeños */
+  .offcanvas-start .theme-btn i {
+    font-size: 0.95rem !important;
+    margin-right: 0.65rem !important;
+  }
+
+  /* Footer extra compacto */
+  .offcanvas-start .sidebar-footer {
+    padding-top: 0.5rem !important;
+  }
+
+  .offcanvas-start .logo-pill-container {
+    padding: 0.5rem !important;
+  }
+
+  .offcanvas-start .modal-logo {
+    max-height: 32px !important;
+  }
+
+  .buttons-container {
+    min-width: 120px !important;
+    max-width: 140px !important;
+    gap: 0.25rem !important;
+  }
+}
