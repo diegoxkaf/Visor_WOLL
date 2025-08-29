@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Visor Water Oriented Living Lab</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+    <!-- <link rel="stylesheet" href="css/desktop.css" media="(min-width: 769px)"> -->
+    <!-- <link rel="stylesheet" href="css/mobile.css" media="(max-width: 768px)"> -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/leaflet.label@0.2.4/dist/leaflet.label.css"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="assets/icons/favicon.ico" type="image/x-icon" />
+  </head>
+  <body>
+    <!-- Navbar Superior - visible en todas las pantallas -->
+    <nav class="navbar navbar-dark bg-dark-blue fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-start">
+          <img src="assets/img/Logo-AVR-Blanco.png" alt="OEC Logo" />
+          <span class="navbar-brand"
+            >Visor Territorial "Water Oriented Living Lab"</span
+          >
+        </div>
+        <div class="buttons-container">
+          <button
+            class="btn btn-outline-light me-2"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasLeft"
+          >
+            <i class="fas fa-bars"></i>
+          </button>
+          <button
+            class="btn btn-outline-light me-2"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasRight"
+          >
+            <i class="fas fa-layer-group"></i>
+          </button>
+          <button
+            class="btn btn-outline-light"
+            data-bs-toggle="modal"
+            data-bs-target="#welcomeModal"
+          >
+            <i class="fas fa-info-circle"></i>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Sidebar Izquierdo -->
+    <div class="container-fluid">
+      <div class="row g-0">
+        <!-- Sidebar móvil -->
+        <div class="offcanvas offcanvas-start" id="offcanvasLeft">
+          <div class="offcanvas-header bg-dark-blue text-white">
+            <h6 class="offcanvas-title">Sectores de Interés</h6>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="offcanvas"
+            ></button>
+          </div>
+          <div class="offcanvas-body bg-dark-blue d-flex flex-column">
+            <div class="nav flex-column" id="theme-buttons-mobile">
+              <!-- Botones temáticos -->
+              <button class="btn theme-btn mb-2" data-theme="agua">
+                <i class="fas fa-hands-holding-circle"></i> Agua
+              </button>
+              <button class="btn theme-btn mb-2" data-theme="suelo">
+                <i class="fas fa-bolt"></i> Suelo
+              </button>
+              <button class="btn theme-btn mb-2" data-theme="Clima">
+                <i class="fas fa-campground"></i> Clima
+              </button>
+              <button class="btn theme-btn mb-2" data-theme="agricultura">
+                <i class="fas fa-seedling"></i> Agricultura
+              </button>
+              <button class="btn theme-btn mb-2" data-theme="mineria">
+                <i class="fas fa-fish"></i> Mineria
+              </button>
+              <button class="btn theme-btn mb-2" data-theme="riesgos">
+                <i class="fas fa-triangle-exclamation"></i> Riesgos - Amenazas
+              </button>
+              <button class="btn theme-btn mb-2" data-theme="planificacion">
+                <i class="fas fa-file-lines"></i> I. Planificación Territorial
+              </button>
+              <button class="btn theme-btn mb-2" data-theme="otros">
+                <i class="fas fa-file-lines"></i> Otros
+              </button>
+              <div class="sidebar-footer mt-auto pt-3">
+                <button
+                  class="btn theme-btn mb-2 w-100"
+                  data-bs-toggle="modal"
+                  data-bs-target="#welcomeModal"
+                >
+                  <i class="fas fa-info-circle"></i> Información
+                </button>
+                <div class="logo-pill-container bg-light rounded-3 p-2">
+                  <div class="d-flex justify-content-center gap-2">
+                    <a
+                      href="https://www.corfo.cl/sites/cpp/homecorfo#"
+                      target="_blank"
+                      ><img
+                        src="assets/img/logo_corfo.png"
+                        alt="corfo"
+                        class="img-fluid modal-logo"
+                    /></a>
+                    <a href="https://codesser.cl/" target="_blank"
+                      ><img
+                        src="assets/img/logo-codesser.png"
+                        alt="codesser"
+                        class="img-fluid modal-logo"
+                    /></a>
+                    <a href="http://andesvalue.com/" target="_blank"
+                      ><img
+                        src="assets/img/Logo Andes.jpg"
+                        alt="andesvalue"
+                        class="img-fluid modal-logo"
+                    /></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mapa -->
+        <div class="col-12 p-0">
+          <div id="map"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sidebar derecho -->
+    <div class="offcanvas offcanvas-end" id="offcanvasRight">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title">Controles</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="offcanvas"
+        ></button>
+      </div>
+      <div class="offcanvas-body p-3">
+        <!-- Capas Temáticas -->
+        <button
+          class="btn btn-secondary w-100 mb-3"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#layers-collapse"
+          aria-expanded="true"
+        >
+          <i class="fas fa-layer-group"></i> Capas Temáticas
+        </button>
+        <div class="collapse show" id="layers-collapse">
+          <!-- Contenedor Desktop -->
+          <div class="layers-container" id="sidebar-layers">
+            <ul class="list-unstyled mb-0"></ul>
+          </div>
+          <!-- Contenedor Mobile -->
+          <div
+            class="layers-container d-block d-md-none"
+            id="sidebar-layers-mobile"
+          >
+            <ul class="list-unstyled mb-0"></ul>
+          </div>
+        </div>
+
+        <!-- Capas Base -->
+        <button
+          class="btn btn-secondary w-100 mb-3 mt-3"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#base-layers-collapse"
+          aria-expanded="true"
+        >
+          <i class="fas fa-globe"></i> Capas Base
+        </button>
+        <div class="collapse show" id="base-layers-collapse">
+          <!-- Contenedor Desktop -->
+          <div class="base-layers-container">
+            <ul id="sidebar-base-layers" class="list-unstyled mb-0"></ul>
+          </div>
+          <!-- Contenedor Mobile -->
+          <div class="base-layers-container d-block d-md-none">
+            <ul id="sidebar-base-layers-mobile" class="list-unstyled mb-0"></ul>
+          </div>
+        </div>
+
+        <!-- Leyenda -->
+        <button
+          class="btn btn-secondary w-100 mt-3"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#legend-collapse"
+          aria-expanded="true"
+        >
+          <i class="fas fa-map"></i> Leyenda
+        </button>
+        <div class="collapse show" id="legend-collapse">
+          <div id="sidebar-legend"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal de bienvenida -->
+    <div class="modal fade" id="welcomeModal">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Bienvenido/a</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <p>
+              Bienvenido/a al visor territorial del
+              <b>"Water Oriented Living Lab, WoLL Región de Atacama"</b>. Este
+              espacio está diseñado para proporcionarte una visión territorial
+              de la Region de Atacama en diversas dimensiones geográficas.
+            </p>
+            <p>
+              Utiliza el menú lateral "Izquierdo" para explorar las diferentes
+              dimensiones. Además, puedes gestionar las capas y sus respectivas
+              configuraciones desde el sidebar derecho.
+            </p>
+            <p>
+              Producción Cartográfica:
+              <a href="http://andesvalue.com/" target="_blank"
+                >Consultora Andes Value Research</a
+              >
+              (<a href="mailto:diegovelasquezf@gmail.com">Diego Velásquez F.</a
+              >), para .
+            </p>
+            <p>
+              La información contenida en el Visor es de caracter REFERENCIAL,
+              por lo tanto puede presentar inconsistencias con el objeto que se
+              esta representando. Las capas de información contenidas en el
+              Visor, provienen de distintas fuentes de proyección geográfica,
+              realizándose una transformación al datum WGS 1984, por lo que es
+              responsabilidad del usuario verificar su exactitud y vigencia.
+            </p>
+            <div
+              class="d-flex flex-wrap justify-content-center align-items-center gap-3 mt-3 logo-container"
+            >
+              <a href="http://andesvalue.com/" target="_blank"
+                ><img
+                  src="assets/img/Logo Andes.jpg"
+                  alt="andesvalue"
+                  class="img-fluid modal-logo"
+              /></a>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cerrar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet.label@0.2.4/dist/leaflet.label.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Turf.js/6.5.0/turf.min.js"></script>
+    <script type="module" src="js/app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const welcomeModal = document.getElementById("welcomeModal");
+        if (welcomeModal) {
+          new bootstrap.Modal(welcomeModal).show();
+        }
+      });
+    </script>
+  </body>
+</html>
